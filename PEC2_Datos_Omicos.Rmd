@@ -27,10 +27,6 @@ edition_options:
   chunk_output_type: console
 ---
 
-```{r}
-
-```
-
 ```{r class.source= 'fold-hide' , setup, include=FALSE}
 library(knitr)
 library(rmdformats)
@@ -48,56 +44,69 @@ opts_knit$set(width=75)
 
 ```
 
-#Introducción y Objetivos
 
-
-#Métodos
-
-
-#Resultados
-
-
-#Discusión
-
-
-#Referencias
-
-
-#Apendices
-
-
-
-
-```{r class.source= 'fold-hide' , setup, include=FALSE}
-library(knitr)
-library(rmdformats)
-
-## Global options
-options(max.print="75")
-opts_chunk$set(echo=TRUE,
-	             cache=FALSE,
-               prompt=FALSE,
-               tidy=TRUE,
-               comment=NA,
-               message=FALSE,
-               warning=FALSE)
-opts_knit$set(width=75)
+```{r directorios}
+workingDir <- getwd()
+dataDir <- file.path(workingDir, "datos")
+resultsDir <- file.path(workingDir, "resultados")
 
 ```
 
+
+```{r paquetes}
+if (!require(BiocManager)) install.packages("BiocManager")
+
+installifnot <- function (pkg){
+  if (!require(pkg, character.only=T)){
+    BiocManager::install(pkg)
+  }
+}
+# BiocManager::install() # Actualiza paquetes instalados
+installifnot("pd.mogene.1.0.st.v1")
+installifnot("mogene10sttranscriptcluster.db")
+installifnot("oligo") #anotaciones de affymetrix
+installifnot("limma") #análisis de modelos lineales
+installifnot("Biobase") #
+installifnot("arrayQualityMetrics") #control de calidad
+installifnot("genefilter") #filtrado
+installifnot("annotate") #anotaciones
+installifnot("xtable")
+installifnot("gplots")
+installifnot("GOstats")#análisis de significación biológica
+installifnot("GEOquery")
+installifnot("affy")
+
+```
 
 
 # Introducción y Objetivos
 
+El estudio investiga cómo los antibióticos linezolid y vancomicina afectan la expresión génica del huésped y la inmunomodulación durante una infección por Staphylococcus aureus resistente a meticilina (MRSA). Utilizando el modelo murino A/J y el aislado USA300 de MRSA, se analizaron diferencias en la producción de toxinas bacterianas, citoquinas del huésped y vías de señalización relacionadas con la infección.
 
+## Diseño del estudio:
+35 ratones divididos en siete grupos (sin infección, sin infección con antibióticos, infección con MRSA a las 2 y 24 horas, e infección tratada con linezolid o vancomicina).
+Los ratones se infectaron con MRSA y se trataron intravenosamente con linezolid o vancomicina a las 2 horas post-infección (hpi).
+Se analizaron CFUs en sangre y riñón, citoquinas en suero (IL-1β, IL-6, TNF-α) y toxinas bacterianas (leucocidina Panton-Valentine y alfa hemolisina) mediante ELISA.
 
 ```{r}
+
 
 ```
 
 
 # Métodos
 
+Se usaron 5 muestras de RNA obtenidas de ratones infectados con MRSA y tratados con linezolid o vancomicina. Estas muestras permitieron identificar diferencias en la expresión génica del huésped entre los tratamientos y en comparación con los controles.
+
+Propósito:
+El objetivo fue evaluar cómo los tratamientos con linezolid y vancomicina afectan la respuesta génica del huésped en un contexto de sepsis por MRSA, proporcionando datos clave para entender la modulación inmunológica asociada a cada antibiótico.
+
+```{r targets}
+
+library(Biobase)
+
+
+```
 
 
 # Resultados
@@ -107,6 +116,9 @@ opts_knit$set(width=75)
 
 
 # Referencias
+
+https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE38531
+https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL1261
 
 
 # Apendices
