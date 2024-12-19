@@ -1,7 +1,20 @@
 ---
-title: "PEC2_Datos_Omicos"
-author: "Raul Gil"
-date: "`r Sys.Date()`"
+title: |
+  <div style="text-align: center;">
+  <img src="Imagenes/Logotipo_UOC.png" style="width: 600px;" />
+  </div>
+subtitle: |
+  <div style="text-align: center;">
+  PEC2 ANÁLISIS DE DATOS ÓMICOS
+  </div>
+author: |
+  <div style="text-align: center;">
+  Raúl Gil Caraballo
+  </div>
+date:  |
+  <div style="text-align: center;">
+  "`r Sys.Date()`"
+  </div>
 output:
   html_document:
     code_folding: hide
@@ -13,5 +26,51 @@ output:
 edition_options:
   chunk_output_type: console
 ---
+
+
+```{r class.source= 'fold-hide' , setup, include=FALSE}
+library(knitr)
+library(rmdformats)
+
+## Global options
+options(max.print="75")
+opts_chunk$set(echo=TRUE,
+	             cache=FALSE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE)
+opts_knit$set(width=75)
+
+```
+
+
+
+# Introducción y Objetivos
+
+
+
+```{r}
+
+```
+
+
+# Métodos
+
+
+
+# Resultados
+
+
+# Discusión
+
+
+# Referencias
+
+
+# Apendices
+
+
 
 
