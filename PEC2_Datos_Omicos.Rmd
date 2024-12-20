@@ -134,17 +134,51 @@ Informe del análisis
 
 Generar informe en Rmarkdown (HTML).
 
+## Lectura de datos
 
 ```{r targets}
 
 library(Biobase)
 
+targetsDF <- read.csv(file = file.path(dataDir, "targets.csv"), header = TRUE, sep = ";")
+# DEFINE SOME VARIABLES FOR PLOTS
+sampleNames <- as.character(targetsDF$ShortName)
+sampleColor <- as.character(targetsDF$Colors)
+# Creamos un objeto AnnotatedDataFrame
+targets <- AnnotatedDataFrame(targetsDF)
+
+```
+
+```{r}
+
+
 
 ```
 
 
+
+## Exploración y control de calidad
+
+### Funciones ad-hoc
+
+### QC con arrayQalityMetrics
+
+## Normalización
+
+## Filtrado
+
+## Selección de genes
+
 # Resultados
 
+## Anotación de resultados
+
+## Visualización de resultados
+
+### Volcano-plot
+### Heatmaps
+
+## Analisis de significación biologica
 
 # Discusión
 

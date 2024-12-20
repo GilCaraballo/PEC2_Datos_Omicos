@@ -455,8 +455,31 @@ display: none;
 <ul>
 <li><a href="#diseño-del-estudio" id="toc-diseño-del-estudio"><span class="toc-section-number">1.1</span> Diseño del estudio:</a></li>
 </ul></li>
-<li><a href="#métodos" id="toc-métodos"><span class="toc-section-number">2</span> Métodos</a></li>
-<li><a href="#resultados" id="toc-resultados"><span class="toc-section-number">3</span> Resultados</a></li>
+<li><a href="#métodos" id="toc-métodos"><span class="toc-section-number">2</span> Métodos</a>
+<ul>
+<li><a href="#lectura-de-datos" id="toc-lectura-de-datos"><span class="toc-section-number">2.1</span> Lectura de datos</a></li>
+<li><a href="#exploración-y-control-de-calidad" id="toc-exploración-y-control-de-calidad"><span class="toc-section-number">2.2</span> Exploración y control de
+calidad</a>
+<ul>
+<li><a href="#funciones-ad-hoc" id="toc-funciones-ad-hoc"><span class="toc-section-number">2.2.1</span> Funciones ad-hoc</a></li>
+<li><a href="#qc-con-arrayqalitymetrics" id="toc-qc-con-arrayqalitymetrics"><span class="toc-section-number">2.2.2</span> QC con
+arrayQalityMetrics</a></li>
+</ul></li>
+<li><a href="#normalización" id="toc-normalización"><span class="toc-section-number">2.3</span> Normalización</a></li>
+<li><a href="#filtrado" id="toc-filtrado"><span class="toc-section-number">2.4</span> Filtrado</a></li>
+<li><a href="#selección-de-genes" id="toc-selección-de-genes"><span class="toc-section-number">2.5</span> Selección de genes</a></li>
+</ul></li>
+<li><a href="#resultados" id="toc-resultados"><span class="toc-section-number">3</span> Resultados</a>
+<ul>
+<li><a href="#anotación-de-resultados" id="toc-anotación-de-resultados"><span class="toc-section-number">3.1</span> Anotación de resultados</a></li>
+<li><a href="#visualización-de-resultados" id="toc-visualización-de-resultados"><span class="toc-section-number">3.2</span> Visualización de resultados</a>
+<ul>
+<li><a href="#volcano-plot" id="toc-volcano-plot"><span class="toc-section-number">3.2.1</span> Volcano-plot</a></li>
+<li><a href="#heatmaps" id="toc-heatmaps"><span class="toc-section-number">3.2.2</span> Heatmaps</a></li>
+</ul></li>
+<li><a href="#analisis-de-significación-biologica" id="toc-analisis-de-significación-biologica"><span class="toc-section-number">3.3</span> Analisis de significación
+biologica</a></li>
+</ul></li>
 <li><a href="#discusión" id="toc-discusión"><span class="toc-section-number">4</span> Discusión</a></li>
 <li><a href="#referencias" id="toc-referencias"><span class="toc-section-number">5</span> Referencias</a></li>
 <li><a href="#apendices" id="toc-apendices"><span class="toc-section-number">6</span> Apendices</a></li>
@@ -468,25 +491,25 @@ dataDir &lt;- file.path(workingDir, &quot;datos&quot;)
 resultsDir &lt;- file.path(workingDir, &quot;resultados&quot;)</code></pre>
 <pre class="r"><code>if (!require(BiocManager)) install.packages(&quot;BiocManager&quot;)
 
-installifnot &lt;- function(pkg) {
-    if (!require(pkg, character.only = T)) {
-        BiocManager::install(pkg)
-    }
+installifnot &lt;- function (pkg){
+  if (!require(pkg, character.only=T)){
+    BiocManager::install(pkg)
+  }
 }
 # BiocManager::install() # Actualiza paquetes instalados
 installifnot(&quot;pd.mogene.1.0.st.v1&quot;)
 installifnot(&quot;mogene10sttranscriptcluster.db&quot;)
-installifnot(&quot;oligo&quot;)  #anotaciones de affymetrix
-installifnot(&quot;limma&quot;)  #análisis de modelos lineales
-installifnot(&quot;Biobase&quot;)  #paquete esencial de bioconductor
-installifnot(&quot;arrayQualityMetrics&quot;)  #control de calidad
-installifnot(&quot;genefilter&quot;)  #filtrado
-installifnot(&quot;annotate&quot;)  #anotaciones
+installifnot(&quot;oligo&quot;) #anotaciones de affymetrix
+installifnot(&quot;limma&quot;) #análisis de modelos lineales
+installifnot(&quot;Biobase&quot;) #paquete esencial de bioconductor
+installifnot(&quot;arrayQualityMetrics&quot;) #control de calidad
+installifnot(&quot;genefilter&quot;) #filtrado
+installifnot(&quot;annotate&quot;) #anotaciones
 installifnot(&quot;xtable&quot;)
 installifnot(&quot;gplots&quot;)
-installifnot(&quot;GOstats&quot;)  #análisis de significación biológica
-installifnot(&quot;GEOquery&quot;)  #acceso y manipulacion de datos de GEO
-installifnot(&quot;affy&quot;)  #analisis de datos plataforma affymetrix</code></pre>
+installifnot(&quot;GOstats&quot;)#análisis de significación biológica
+installifnot(&quot;GEOquery&quot;)#acceso y manipulacion de datos de GEO
+installifnot(&quot;affy&quot;) #analisis de datos plataforma affymetrix</code></pre>
 <div id="introducción-y-objetivos" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Introducción y
 Objetivos</h1>
@@ -538,10 +561,53 @@ de significación biológica</p>
 <p>Realizar enriquecimiento funcional y análisis GSEA con
 clusterProfiler. Informe del análisis</p>
 <p>Generar informe en Rmarkdown (HTML).</p>
+<div id="lectura-de-datos" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Lectura de datos</h2>
 <pre class="r"><code>library(Biobase)</code></pre>
+</div>
+<div id="exploración-y-control-de-calidad" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Exploración y control
+de calidad</h2>
+<div id="funciones-ad-hoc" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Funciones
+ad-hoc</h3>
+</div>
+<div id="qc-con-arrayqalitymetrics" class="section level3" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> QC con
+arrayQalityMetrics</h3>
+</div>
+</div>
+<div id="normalización" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Normalización</h2>
+</div>
+<div id="filtrado" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Filtrado</h2>
+</div>
+<div id="selección-de-genes" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Selección de
+genes</h2>
+</div>
 </div>
 <div id="resultados" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Resultados</h1>
+<div id="anotación-de-resultados" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Anotación de
+resultados</h2>
+</div>
+<div id="visualización-de-resultados" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Visualización de
+resultados</h2>
+<div id="volcano-plot" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Volcano-plot</h3>
+</div>
+<div id="heatmaps" class="section level3" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Heatmaps</h3>
+</div>
+</div>
+<div id="analisis-de-significación-biologica" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Analisis de
+significación biologica</h2>
+</div>
 </div>
 <div id="discusión" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Discusión</h1>
@@ -550,6 +616,7 @@ clusterProfiler. Informe del análisis</p>
 <h1><span class="header-section-number">5</span> Referencias</h1>
 <p><a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE38531" class="uri">https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE38531</a></p>
 <p><a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL1261" class="uri">https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL1261</a></p>
+<p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3614971/" class="uri">https://pmc.ncbi.nlm.nih.gov/articles/PMC3614971/</a></p>
 </div>
 <div id="apendices" class="section level1" number="6">
 <h1><span class="header-section-number">6</span> Apendices</h1>
