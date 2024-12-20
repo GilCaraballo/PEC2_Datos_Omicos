@@ -66,15 +66,15 @@ installifnot("pd.mogene.1.0.st.v1")
 installifnot("mogene10sttranscriptcluster.db")
 installifnot("oligo") #anotaciones de affymetrix
 installifnot("limma") #análisis de modelos lineales
-installifnot("Biobase") #
+installifnot("Biobase") #paquete esencial de bioconductor
 installifnot("arrayQualityMetrics") #control de calidad
 installifnot("genefilter") #filtrado
 installifnot("annotate") #anotaciones
 installifnot("xtable")
 installifnot("gplots")
 installifnot("GOstats")#análisis de significación biológica
-installifnot("GEOquery")
-installifnot("affy")
+installifnot("GEOquery")#acceso y manipulacion de datos de GEO
+installifnot("affy") #analisis de datos plataforma affymetrix
 
 ```
 
@@ -84,6 +84,7 @@ installifnot("affy")
 El estudio investiga cómo los antibióticos linezolid y vancomicina afectan la expresión génica del huésped y la inmunomodulación durante una infección por Staphylococcus aureus resistente a meticilina (MRSA). Utilizando el modelo murino A/J y el aislado USA300 de MRSA, se analizaron diferencias en la producción de toxinas bacterianas, citoquinas del huésped y vías de señalización relacionadas con la infección.
 
 ## Diseño del estudio:
+
 35 ratones divididos en siete grupos (sin infección, sin infección con antibióticos, infección con MRSA a las 2 y 24 horas, e infección tratada con linezolid o vancomicina).
 Los ratones se infectaron con MRSA y se trataron intravenosamente con linezolid o vancomicina a las 2 horas post-infección (hpi).
 Se analizaron CFUs en sangre y riñón, citoquinas en suero (IL-1β, IL-6, TNF-α) y toxinas bacterianas (leucocidina Panton-Valentine y alfa hemolisina) mediante ELISA.
@@ -100,6 +101,39 @@ Se usaron 5 muestras de RNA obtenidas de ratones infectados con MRSA y tratados 
 
 Propósito:
 El objetivo fue evaluar cómo los tratamientos con linezolid y vancomicina afectan la respuesta génica del huésped en un contexto de sepsis por MRSA, proporcionando datos clave para entender la modulación inmunológica asociada a cada antibiótico.
+
+Etapas a cubrir:
+Preparación de los datos
+
+Descargar datos crudos desde GEO.
+Eliminar muestras a las 2 horas.
+Seleccionar 24 muestras usando la función selectSamples.
+
+Análisis exploratorio y control de calidad
+
+Decidir si los datos requieren transformación.
+Visualizar separación de los grupos.
+Aplicar control de calidad (usando arrayqualitymetrics).
+
+Filtrado de los datos
+
+Eliminar sondas menos variables (top 10% en variabilidad).
+Construcción de matrices de diseño y contrastes
+
+Crear matrices necesarias para las comparaciones especificadas.
+Identificación de genes diferencialmente expresados
+
+Usar limma para identificar genes diferencialmente expresados en las tres comparaciones.
+Anotación de los genes
+
+Asociar identificadores como Symbol, EntrezID, o EnsemblID.
+Análisis de significación biológica
+
+Realizar enriquecimiento funcional y análisis GSEA con clusterProfiler.
+Informe del análisis
+
+Generar informe en Rmarkdown (HTML).
+
 
 ```{r targets}
 
@@ -118,7 +152,10 @@ library(Biobase)
 # Referencias
 
 https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE38531
+
 https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL1261
+
+https://pmc.ncbi.nlm.nih.gov/articles/PMC3614971/
 
 
 # Apendices

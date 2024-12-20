@@ -451,7 +451,10 @@ display: none;
 
 <div id="TOC">
 <ul>
-<li><a href="#introducción-y-objetivos" id="toc-introducción-y-objetivos"><span class="toc-section-number">1</span> Introducción y Objetivos</a></li>
+<li><a href="#introducción-y-objetivos" id="toc-introducción-y-objetivos"><span class="toc-section-number">1</span> Introducción y Objetivos</a>
+<ul>
+<li><a href="#diseño-del-estudio" id="toc-diseño-del-estudio"><span class="toc-section-number">1.1</span> Diseño del estudio:</a></li>
+</ul></li>
 <li><a href="#métodos" id="toc-métodos"><span class="toc-section-number">2</span> Métodos</a></li>
 <li><a href="#resultados" id="toc-resultados"><span class="toc-section-number">3</span> Resultados</a></li>
 <li><a href="#discusión" id="toc-discusión"><span class="toc-section-number">4</span> Discusión</a></li>
@@ -460,12 +463,82 @@ display: none;
 </ul>
 </div>
 
+<pre class="r"><code>workingDir &lt;- getwd()
+dataDir &lt;- file.path(workingDir, &quot;datos&quot;)
+resultsDir &lt;- file.path(workingDir, &quot;resultados&quot;)</code></pre>
+<pre class="r"><code>if (!require(BiocManager)) install.packages(&quot;BiocManager&quot;)
+
+installifnot &lt;- function(pkg) {
+    if (!require(pkg, character.only = T)) {
+        BiocManager::install(pkg)
+    }
+}
+# BiocManager::install() # Actualiza paquetes instalados
+installifnot(&quot;pd.mogene.1.0.st.v1&quot;)
+installifnot(&quot;mogene10sttranscriptcluster.db&quot;)
+installifnot(&quot;oligo&quot;)  #anotaciones de affymetrix
+installifnot(&quot;limma&quot;)  #análisis de modelos lineales
+installifnot(&quot;Biobase&quot;)  #paquete esencial de bioconductor
+installifnot(&quot;arrayQualityMetrics&quot;)  #control de calidad
+installifnot(&quot;genefilter&quot;)  #filtrado
+installifnot(&quot;annotate&quot;)  #anotaciones
+installifnot(&quot;xtable&quot;)
+installifnot(&quot;gplots&quot;)
+installifnot(&quot;GOstats&quot;)  #análisis de significación biológica
+installifnot(&quot;GEOquery&quot;)  #acceso y manipulacion de datos de GEO
+installifnot(&quot;affy&quot;)  #analisis de datos plataforma affymetrix</code></pre>
 <div id="introducción-y-objetivos" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Introducción y
 Objetivos</h1>
+<p>El estudio investiga cómo los antibióticos linezolid y vancomicina
+afectan la expresión génica del huésped y la inmunomodulación durante
+una infección por Staphylococcus aureus resistente a meticilina (MRSA).
+Utilizando el modelo murino A/J y el aislado USA300 de MRSA, se
+analizaron diferencias en la producción de toxinas bacterianas,
+citoquinas del huésped y vías de señalización relacionadas con la
+infección.</p>
+<div id="diseño-del-estudio" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Diseño del
+estudio:</h2>
+<p>35 ratones divididos en siete grupos (sin infección, sin infección
+con antibióticos, infección con MRSA a las 2 y 24 horas, e infección
+tratada con linezolid o vancomicina). Los ratones se infectaron con MRSA
+y se trataron intravenosamente con linezolid o vancomicina a las 2 horas
+post-infección (hpi). Se analizaron CFUs en sangre y riñón, citoquinas
+en suero (IL-1β, IL-6, TNF-α) y toxinas bacterianas (leucocidina
+Panton-Valentine y alfa hemolisina) mediante ELISA.</p>
+</div>
 </div>
 <div id="métodos" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Métodos</h1>
+<p>Se usaron 5 muestras de RNA obtenidas de ratones infectados con MRSA
+y tratados con linezolid o vancomicina. Estas muestras permitieron
+identificar diferencias en la expresión génica del huésped entre los
+tratamientos y en comparación con los controles.</p>
+<p>Propósito: El objetivo fue evaluar cómo los tratamientos con
+linezolid y vancomicina afectan la respuesta génica del huésped en un
+contexto de sepsis por MRSA, proporcionando datos clave para entender la
+modulación inmunológica asociada a cada antibiótico.</p>
+<p>Etapas a cubrir: Preparación de los datos</p>
+<p>Descargar datos crudos desde GEO. Eliminar muestras a las 2 horas.
+Seleccionar 24 muestras usando la función selectSamples.</p>
+<p>Análisis exploratorio y control de calidad</p>
+<p>Decidir si los datos requieren transformación. Visualizar separación
+de los grupos. Aplicar control de calidad (usando
+arrayqualitymetrics).</p>
+<p>Filtrado de los datos</p>
+<p>Eliminar sondas menos variables (top 10% en variabilidad).
+Construcción de matrices de diseño y contrastes</p>
+<p>Crear matrices necesarias para las comparaciones especificadas.
+Identificación de genes diferencialmente expresados</p>
+<p>Usar limma para identificar genes diferencialmente expresados en las
+tres comparaciones. Anotación de los genes</p>
+<p>Asociar identificadores como Symbol, EntrezID, o EnsemblID. Análisis
+de significación biológica</p>
+<p>Realizar enriquecimiento funcional y análisis GSEA con
+clusterProfiler. Informe del análisis</p>
+<p>Generar informe en Rmarkdown (HTML).</p>
+<pre class="r"><code>library(Biobase)</code></pre>
 </div>
 <div id="resultados" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Resultados</h1>
@@ -475,6 +548,8 @@ Objetivos</h1>
 </div>
 <div id="referencias" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> Referencias</h1>
+<p><a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE38531" class="uri">https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE38531</a></p>
+<p><a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL1261" class="uri">https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL1261</a></p>
 </div>
 <div id="apendices" class="section level1" number="6">
 <h1><span class="header-section-number">6</span> Apendices</h1>
