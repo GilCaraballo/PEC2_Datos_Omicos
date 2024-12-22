@@ -427,13 +427,22 @@ if (rerun) {
 Datos Normalizados
 
 ```{r}
+if (!requireNamespace("affy", quietly = TRUE)) {
+  install.packages("affy")
+}
+
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+  install.packages("BiocManager")
+}
+BiocManager::install("affy")
+
 library(affy)
 
 # Leer los archivos .CEL con affy
 raw_data_affy <- ReadAffy(filenames = selected_cel_files)
 
 # Normalización con RMA
-normalized_data <- rma(raw_data_affy)
+normalized_data <- affy::rma(raw_data_affy)
 
 # Transferir el phenoData del objeto original al objeto normalizado
 pData(normalized_data) <- pData(raw_data)
@@ -533,7 +542,10 @@ filtered_data <- nsFilter(normalized_data,
 filtered_data
 
 ```
-
+numDupsRemoved: 16,958 sondas duplicadas eliminadas.
+numLowVar: 14,336 sondas de baja varianza eliminadas.
+numRemoved.ENTREZID: 7,650 sondas eliminadas por no tener un ENTREZID.
+feature.exclude: 13 sondas eliminadas por otros criterios.
 
 ```{r}
 # Dimensiones antes y después del filtrado
@@ -643,6 +655,24 @@ ggplot(volcano_data, aes(x = logFC, y = -log10(P.Value))) +
 
 ```
 
+```{r}
+library(mouse4302.db)
+
+# Verifica si los PROBEID están presentes en el paquete de anotación
+probe_check <- AnnotationDbi::select(
+  mouse4302.db,
+  keys = head(rownames(fit2$coefficients)),  # Probar con las primeras sondas
+  columns = c("ENTREZID", "SYMBOL"),
+  keytype = "PROBEID"
+)
+
+# Mostrar las anotaciones encontradas
+print(probe_check)
+```
+
+
+
+
 
 
 ```{r}
@@ -656,25 +686,6 @@ results_untreated <- topTable(
   p.value = 0.05
 )
 
-# Obtener índices de las filas correspondientes en fit2$coefficients
-row_indices <- match(rownames(results_untreated), rownames(fit2$coefficients))
-
-# Asignar nombres de filas
-rownames(results_untreated) <- rownames(fit2$coefficients)[row_indices]
-
-# Verificar los nombres de filas corregidos
-print(head(rownames(results_untreated)))
-
-# Generar las anotaciones
-anotaciones <- AnnotationDbi::select(
-  mouse4302.db,
-  keys = rownames(results_untreated),
-  columns = c("ENTREZID", "SYMBOL"),
-  keytype = "PROBEID"
-)
-
-# Verificar las anotaciones
-print(head(anotaciones))
 
 
 ```
@@ -813,54 +824,6 @@ head(anotaciones)
 
 ```
 
-```{r}
-library(dplyr)
-
-# Anotar resultados
-anotaciones <- AnnotationDbi::select(
-  mouse4302.db,
-  keys = rownames(results_untreated),
-  columns = c("ENTREZID", "SYMBOL"),
-  keytype = "PROBEID"
-)
-
-# Verificar las anotaciones extraídas
-print(head(anotaciones))
-
-# Anotar y organizar resultados
-results_untreated_annotated <- results_untreated %>%
-  mutate(PROBEID = rownames(results_untreated)) %>%
-  left_join(anotaciones, by = "PROBEID") %>%
-  filter(!is.na(ENTREZID) & !is.na(SYMBOL)) %>%  # Filtrar filas con anotaciones válidas
-  arrange(P.Value) %>%  # Ordenar por P-Value
-  select(PROBEID, ENTREZID, SYMBOL, logFC, AveExpr, t, P.Value, adj.P.Val, B)
-
-# Verificar los resultados anotados
-print(head(results_untreated_annotated))
-
-# Verificar las columnas en el objeto `results_untreated`
-print(colnames(results_untreated))
-
-# Añadir PROBEID desde los rownames y realizar la anotación
-results_untreated_annotated <- results_untreated %>%
-  mutate(PROBEID = rownames(results_untreated)) %>%  # Añadir PROBEID
-  left_join(anotaciones, by = "PROBEID") %>%         # Combinar con anotaciones
-  arrange(P.Value) %>%                               # Ordenar por P.Value
-  select(PROBEID, ENTREZID, SYMBOL, logFC, AveExpr, t, P.Value, adj.P.Val, B)  # Seleccionar columnas
-
-# Revisar los resultados anotados
-head(results_untreated_annotated)
-
-# Guardar los resultados en un archivo CSV
-write.csv2(
-  results_untreated_annotated,
-  file = file.path(resultsDir, "Genes_Seleccionados_Untreated.csv")
-)
-
-
-```
-
-
 ## Visualización de resultados
 
 ### Volcano-plot
@@ -963,50 +926,51 @@ dev.off()
 ```
 
 
-### Heatmaps
-
-```{r}
-# Filtrar genes con logFC >= 3 o logFC <= -3
-selectedRows <- abs(results_untreated$logFC) >= 3
-
-# Extraer los datos correspondientes a esos genes
-selectedData <- exprs(normalized_data)[selectedRows, ]
-
-# Verificar las dimensiones de los datos seleccionados
-print(dim(selectedData))
-
-```
-
-
-```{r}
-# Crear la paleta de colores
-library(gplots)
-my_palette <- colorRampPalette(c("blue", "white", "red"))(n = 299)
-
-# Crear colores para las columnas basados en el tratamiento
-colSideColors <- ifelse(pData(normalized_data)$tratamiento == "untreated", "red",
-                  ifelse(pData(normalized_data)$tratamiento == "vancomycin", "blue", "green"))
-
-# Graficar el heatmap
-heatmap.2(
-  selectedData, 
-  Rowv = TRUE, Colv = TRUE,   # Dendrogramas para filas y columnas
-  main = "HeatMap: Infected vs Uninfected Untreated (logFC >= 3)", 
-  scale = "row",              # Escalar las filas
-  col = my_palette,           # Paleta de colores
-  sepcolor = "white", sepwidth = c(0.05, 0.05),
-  cexRow = 0.5, cexCol = 0.9, 
-  key = TRUE, keysize = 1.5, density.info = "histogram", 
-  ColSideColors = colSideColors,  # Colores para las columnas
-  tracecol = NULL, srtCol = 30    # Sin trazas y rotación de etiquetas de columnas
-)
-
-```
-
-
 ## Analisis de significación biologica
 
+```{r significacion biologica}
+#código adaptado del ejercicio de prácticas
+# Cargar las bibliotecas necesarias
+library(mouse4302.db)  # Base de datos específica para Affymetrix Mouse Genome 430 2.0
+library(GOstats)
+
+# Preparar el universo de genes
+probesUniverse <- rownames(filteredData)  # Todas las sondas en el análisis
+entrezUniverse <- AnnotationDbi::select(mouse4302.db, probesUniverse, "ENTREZID")$ENTREZID
+                                        
+# Preparar la lista de genes seleccionados
+topProbes <- rownames(filteredEset)  # Sondas seleccionadas como diferencialmente expresadas
+entrezTop <- AnnotationDbi::select(mouse4302.db, topProbes, "ENTREZID")$ENTREZID
+
+topGenes <- entrezTop[!duplicated(entrezTop)]
+entrezUniverse <- entrezUniverse[!duplicated(entrezUniverse)]
+
+
+
+# Crear el objeto GOHyperGParams
+GOparams <- new("GOHyperGParams",
+                geneIds = topGenes, universeGeneIds = entrezUniverse, annotation = "mouse4302.db",
+                ontology = "BP",  # Biological Process (puede ser 'BP', 'MF', o 'CC')
+                pvalueCutoff = 0.01)  # Umbral de significación
+
+# Ejecutar el análisis de sobre-representación
+GOhyper <- hyperGTest(GOparams)
+
+# Resumen de los resultados
+head(summary(GOhyper))
+dim(summary(GOhyper))
+
+# Guardar los resultados como un archivo HTML
+GOfilename <- file.path(resultsDir, "GOResults.html")
+htmlReport(GOhyper, file = GOfilename, summary.args = list(htmlLinks = TRUE))
+
+```
+
+
+
 # Discusión
+
+
 
 
 # Referencias
@@ -1021,47 +985,4 @@ https://github.com/GilCaraballo/PEC2_Datos_Omicos
 
 
 # Apendices
-
-
-
-
-```{r}
-library(dplyr)
-
-# Agregar anotaciones a los resultados
-results_untreated_annotated <- results_untreated %>%
-  mutate(PROBEID = rownames(results_untreated)) %>%  # Añadir PROBEID desde rownames
-  left_join(anotaciones, by = "PROBEID") %>%         # Combinar con las anotaciones
-  arrange(P.Value) %>%                               # Ordenar por P-Value
-  select(PROBEID, ENTREZID, SYMBOL, logFC, AveExpr, t, P.Value, adj.P.Val, B)  # Reorganizar columnas
-
-# Ver los primeros resultados anotados
-head(results_untreated_annotated)
-
-
-```
-
-
-```{r}
-write.csv2(
-  results_untreated_annotated,
-  file = file.path(resultsDir, "Genes_Seleccionados_Untreated.csv")
-)
-
-```
-
-```{r}
-library(xtable)
-
-html_table <- xtable(results_untreated_annotated)
-print(
-  html_table,
-  type = "html",
-  html.table.attributes = "",
-  file = file.path(resultsDir, "Genes_Seleccionados_Untreated.html")
-)
-
-
-```
-
 
