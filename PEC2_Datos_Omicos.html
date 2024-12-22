@@ -635,11 +635,11 @@ GSM944831                                   0
 <pre><code>                                                        size isdir mode
 E:/GItHub/PEC2_Datos_Omicos/datos/GSE38531_RAW.tar 128808960 FALSE  666
                                                                  mtime
-E:/GItHub/PEC2_Datos_Omicos/datos/GSE38531_RAW.tar 2024-12-22 23:12:15
+E:/GItHub/PEC2_Datos_Omicos/datos/GSE38531_RAW.tar 2024-12-22 23:25:54
                                                                  ctime
 E:/GItHub/PEC2_Datos_Omicos/datos/GSE38531_RAW.tar 2024-12-22 20:10:58
                                                                  atime exe
-E:/GItHub/PEC2_Datos_Omicos/datos/GSE38531_RAW.tar 2024-12-22 23:12:15  no</code></pre>
+E:/GItHub/PEC2_Datos_Omicos/datos/GSE38531_RAW.tar 2024-12-22 23:25:54  no</code></pre>
 <pre class="r"><code># Listar los archivos .tar en el directorio
 list_files &lt;- list.files(dataDir, pattern = &quot;\\.tar$&quot;, full.names = TRUE)
 
@@ -661,82 +661,41 @@ if (length(cel_gz_files) &gt; 0) {
 
 # Confirmar que los archivos .CEL han sido descomprimidos
 list.files(dataDir, pattern = &quot;\\.CEL$&quot;, full.names = TRUE)</code></pre>
-<pre><code> [1] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944831.CEL&quot;                                     
- [2] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944831.CEL.CEL&quot;                                 
- [3] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944831.CEL.CEL.CEL.CEL&quot;                         
- [4] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944831_2564_6914_32297_Ctl-1_Mouse430+2.CEL&quot;    
- [5] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944832.CEL&quot;                                     
- [6] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944832.CEL.CEL&quot;                                 
- [7] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944832.CEL.CEL.CEL.CEL&quot;                         
- [8] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944832_2564_6914_32298_2h-1_Mouse430+2.CEL&quot;     
- [9] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944833.CEL&quot;                                     
-[10] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944833.CEL.CEL&quot;                                 
-[11] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944833.CEL.CEL.CEL.CEL&quot;                         
-[12] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944833_2564_6914_32299_Ctl-Lin-1_Mouse430+2.CEL&quot;
-[13] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944834.CEL&quot;                                     
-[14] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944834.CEL.CEL&quot;                                 
-[15] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944834.CEL.CEL.CEL.CEL&quot;                         
-[16] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944834_2564_6914_32300_Ctl-Van-1_Mouse430+2.CEL&quot;
-[17] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944835.CEL&quot;                                     
-[18] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944835.CEL.CEL&quot;                                 
-[19] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944835.CEL.CEL.CEL.CEL&quot;                         
-[20] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944835_2564_6914_32301_24h-1_Mouse430+2.CEL&quot;    
-[21] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944836.CEL&quot;                                     
-[22] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944836.CEL.CEL&quot;                                 
-[23] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944836.CEL.CEL.CEL.CEL&quot;                         
-[24] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944836_2564_6914_32302_24h-lin-1_Mouse430+2.CEL&quot;
-[25] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944837.CEL&quot;                                     
-[26] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944837.CEL.CEL&quot;                                 
-[27] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944837.CEL.CEL.CEL.CEL&quot;                         
-[28] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944837_2564_6914_32303_24h-Van-1_Mouse430+2.CEL&quot;
-[29] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944838.CEL&quot;                                     
-[30] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944838.CEL.CEL&quot;                                 
-[31] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944838.CEL.CEL.CEL.CEL&quot;                         
-[32] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944838_2564_6914_32304_Ctl-2_Mouse430+2.CEL&quot;    
-[33] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944839.CEL&quot;                                     
-[34] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944839.CEL.CEL&quot;                                 
-[35] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944839.CEL.CEL.CEL.CEL&quot;                         
-[36] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944839_2564_6914_32305_2h-2_Mouse430+2.CEL&quot;     
-[37] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944840.CEL&quot;                                     
-[38] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944840.CEL.CEL&quot;                                 
-[39] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944840.CEL.CEL.CEL.CEL&quot;                         
-[40] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944840_2564_6914_32306_Ctl-Lin-2_Mouse430+2.CEL&quot;
-[41] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944841.CEL&quot;                                     
-[42] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944841.CEL.CEL&quot;                                 
-[43] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944841.CEL.CEL.CEL.CEL&quot;                         
-[44] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944841_2564_6914_32307_Ctl-Van-2_Mouse430+2.CEL&quot;
-[45] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944842.CEL&quot;                                     
-[46] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944842.CEL.CEL&quot;                                 
-[47] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944842.CEL.CEL.CEL.CEL&quot;                         
-[48] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944842_2564_6914_32308_24h-2_Mouse430+2.CEL&quot;    
-[49] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944843.CEL&quot;                                     
-[50] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944843.CEL.CEL&quot;                                 
-[51] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944843.CEL.CEL.CEL.CEL&quot;                         
-[52] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944843_2564_6914_32309_24h-lin-2_Mouse430+2.CEL&quot;
-[53] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944844.CEL&quot;                                     
-[54] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944844.CEL.CEL&quot;                                 
-[55] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944844.CEL.CEL.CEL.CEL&quot;                         
-[56] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944844_2564_6914_32310_24h-Van-2_Mouse430+2.CEL&quot;
-[57] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944845.CEL&quot;                                     
-[58] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944845.CEL.CEL&quot;                                 
-[59] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944845.CEL.CEL.CEL.CEL&quot;                         
-[60] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944845_2564_6914_32311_Ctl-3_Mouse430+2.CEL&quot;    
-[61] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944846.CEL&quot;                                     
-[62] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944846.CEL.CEL&quot;                                 
-[63] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944846.CEL.CEL.CEL.CEL&quot;                         
-[64] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944846_2564_6914_32312_2h-3_Mouse430+2.CEL&quot;     
-[65] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944847.CEL&quot;                                     
-[66] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944847.CEL.CEL&quot;                                 
-[67] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944847.CEL.CEL.CEL.CEL&quot;                         
-[68] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944847_2564_6914_32313_Ctl-Lin-3_Mouse430+2.CEL&quot;
-[69] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944848.CEL&quot;                                     
-[70] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944848.CEL.CEL&quot;                                 
-[71] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944848.CEL.CEL.CEL.CEL&quot;                         
-[72] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944848_2564_6914_32314_Ctl-Van-3_Mouse430+2.CEL&quot;
-[73] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944849.CEL&quot;                                     
-[74] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944849.CEL.CEL&quot;                                 
-[75] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944849.CEL.CEL.CEL.CEL&quot;                         
- [ reached getOption(&quot;max.print&quot;) -- omitted 65 entries ]</code></pre>
+<pre><code> [1] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944831_2564_6914_32297_Ctl-1_Mouse430+2.CEL&quot;    
+ [2] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944832_2564_6914_32298_2h-1_Mouse430+2.CEL&quot;     
+ [3] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944833_2564_6914_32299_Ctl-Lin-1_Mouse430+2.CEL&quot;
+ [4] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944834_2564_6914_32300_Ctl-Van-1_Mouse430+2.CEL&quot;
+ [5] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944835_2564_6914_32301_24h-1_Mouse430+2.CEL&quot;    
+ [6] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944836_2564_6914_32302_24h-lin-1_Mouse430+2.CEL&quot;
+ [7] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944837_2564_6914_32303_24h-Van-1_Mouse430+2.CEL&quot;
+ [8] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944838_2564_6914_32304_Ctl-2_Mouse430+2.CEL&quot;    
+ [9] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944839_2564_6914_32305_2h-2_Mouse430+2.CEL&quot;     
+[10] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944840_2564_6914_32306_Ctl-Lin-2_Mouse430+2.CEL&quot;
+[11] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944841_2564_6914_32307_Ctl-Van-2_Mouse430+2.CEL&quot;
+[12] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944842_2564_6914_32308_24h-2_Mouse430+2.CEL&quot;    
+[13] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944843_2564_6914_32309_24h-lin-2_Mouse430+2.CEL&quot;
+[14] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944844_2564_6914_32310_24h-Van-2_Mouse430+2.CEL&quot;
+[15] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944845_2564_6914_32311_Ctl-3_Mouse430+2.CEL&quot;    
+[16] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944846_2564_6914_32312_2h-3_Mouse430+2.CEL&quot;     
+[17] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944847_2564_6914_32313_Ctl-Lin-3_Mouse430+2.CEL&quot;
+[18] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944848_2564_6914_32314_Ctl-Van-3_Mouse430+2.CEL&quot;
+[19] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944849_2564_6914_32315_24h-3_Mouse430+2.CEL&quot;    
+[20] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944850_2564_6914_32316_24h-lin-3_Mouse430+2.CEL&quot;
+[21] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944851_2564_6914_32317_24h-Van-3_Mouse430+2.CEL&quot;
+[22] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944852_2564_6914_32318_Ctl-4_Mouse430+2.CEL&quot;    
+[23] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944853_2564_6914_32319_2h-4_Mouse430+2.CEL&quot;     
+[24] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944854_2564_6914_32320_Ctl-Lin-4_Mouse430+2.CEL&quot;
+[25] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944855_2564_6914_32321_Ctl-Van-4_Mouse430+2.CEL&quot;
+[26] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944856_2564_6914_32322_24h-4_Mouse430+2.CEL&quot;    
+[27] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944857_2564_6914_32323_24h-lin-4_Mouse430+2.CEL&quot;
+[28] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944858_2564_6914_32324_24h-Van-4_Mouse430+2.CEL&quot;
+[29] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944859_2564_6914_32325_Ctl-5_Mouse430+2.CEL&quot;    
+[30] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944860_2564_6914_32326_2h-5_Mouse430+2.CEL&quot;     
+[31] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944861_2564_6914_32327_Ctl-Lin-5_Mouse430+2.CEL&quot;
+[32] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944862_2564_6914_32328_Ctl-Van-5_Mouse430+2.CEL&quot;
+[33] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944863_2564_6914_32329_24h-5_Mouse430+2.CEL&quot;    
+[34] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944864_2564_6914_32330_24h-lin-5_Mouse430+2.CEL&quot;
+[35] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944865_2564_6914_32331_24h-Van-5_Mouse430+2.CEL&quot;</code></pre>
 <pre class="r"><code># Listar todos los archivos .CEL en el directorio
 cel_files &lt;- list.files(dataDir, pattern = &quot;\\.CEL$&quot;, full.names = TRUE)
 
@@ -757,82 +716,41 @@ for (file in cel_files) {
 
 # Verificar los archivos renombrados
 list.files(dataDir, pattern = &quot;\\.CEL$&quot;, full.names = TRUE)</code></pre>
-<pre><code> [1] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944831.CEL&quot;                
- [2] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944831.CEL.CEL.CEL&quot;        
- [3] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944831.CEL.CEL.CEL.CEL.CEL&quot;
- [4] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944832.CEL&quot;                
- [5] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944832.CEL.CEL.CEL&quot;        
- [6] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944832.CEL.CEL.CEL.CEL.CEL&quot;
- [7] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944833.CEL&quot;                
- [8] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944833.CEL.CEL.CEL&quot;        
- [9] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944833.CEL.CEL.CEL.CEL.CEL&quot;
-[10] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944834.CEL&quot;                
-[11] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944834.CEL.CEL.CEL&quot;        
-[12] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944834.CEL.CEL.CEL.CEL.CEL&quot;
-[13] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944835.CEL&quot;                
-[14] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944835.CEL.CEL.CEL&quot;        
-[15] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944835.CEL.CEL.CEL.CEL.CEL&quot;
-[16] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944836.CEL&quot;                
-[17] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944836.CEL.CEL.CEL&quot;        
-[18] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944836.CEL.CEL.CEL.CEL.CEL&quot;
-[19] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944837.CEL&quot;                
-[20] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944837.CEL.CEL.CEL&quot;        
-[21] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944837.CEL.CEL.CEL.CEL.CEL&quot;
-[22] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944838.CEL&quot;                
-[23] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944838.CEL.CEL.CEL&quot;        
-[24] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944838.CEL.CEL.CEL.CEL.CEL&quot;
-[25] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944839.CEL&quot;                
-[26] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944839.CEL.CEL.CEL&quot;        
-[27] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944839.CEL.CEL.CEL.CEL.CEL&quot;
-[28] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944840.CEL&quot;                
-[29] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944840.CEL.CEL.CEL&quot;        
-[30] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944840.CEL.CEL.CEL.CEL.CEL&quot;
-[31] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944841.CEL&quot;                
-[32] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944841.CEL.CEL.CEL&quot;        
-[33] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944841.CEL.CEL.CEL.CEL.CEL&quot;
-[34] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944842.CEL&quot;                
-[35] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944842.CEL.CEL.CEL&quot;        
-[36] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944842.CEL.CEL.CEL.CEL.CEL&quot;
-[37] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944843.CEL&quot;                
-[38] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944843.CEL.CEL.CEL&quot;        
-[39] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944843.CEL.CEL.CEL.CEL.CEL&quot;
-[40] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944844.CEL&quot;                
-[41] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944844.CEL.CEL.CEL&quot;        
-[42] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944844.CEL.CEL.CEL.CEL.CEL&quot;
-[43] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944845.CEL&quot;                
-[44] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944845.CEL.CEL.CEL&quot;        
-[45] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944845.CEL.CEL.CEL.CEL.CEL&quot;
-[46] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944846.CEL&quot;                
-[47] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944846.CEL.CEL.CEL&quot;        
-[48] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944846.CEL.CEL.CEL.CEL.CEL&quot;
-[49] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944847.CEL&quot;                
-[50] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944847.CEL.CEL.CEL&quot;        
-[51] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944847.CEL.CEL.CEL.CEL.CEL&quot;
-[52] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944848.CEL&quot;                
-[53] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944848.CEL.CEL.CEL&quot;        
-[54] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944848.CEL.CEL.CEL.CEL.CEL&quot;
-[55] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944849.CEL&quot;                
-[56] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944849.CEL.CEL.CEL&quot;        
-[57] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944849.CEL.CEL.CEL.CEL.CEL&quot;
-[58] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944850.CEL&quot;                
-[59] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944850.CEL.CEL.CEL&quot;        
-[60] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944850.CEL.CEL.CEL.CEL.CEL&quot;
-[61] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944851.CEL&quot;                
-[62] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944851.CEL.CEL.CEL&quot;        
-[63] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944851.CEL.CEL.CEL.CEL.CEL&quot;
-[64] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944852.CEL&quot;                
-[65] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944852.CEL.CEL.CEL&quot;        
-[66] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944852.CEL.CEL.CEL.CEL.CEL&quot;
-[67] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944853.CEL&quot;                
-[68] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944853.CEL.CEL.CEL&quot;        
-[69] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944853.CEL.CEL.CEL.CEL.CEL&quot;
-[70] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944854.CEL&quot;                
-[71] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944854.CEL.CEL.CEL&quot;        
-[72] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944854.CEL.CEL.CEL.CEL.CEL&quot;
-[73] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944855.CEL&quot;                
-[74] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944855.CEL.CEL.CEL&quot;        
-[75] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944855.CEL.CEL.CEL.CEL.CEL&quot;
- [ reached getOption(&quot;max.print&quot;) -- omitted 30 entries ]</code></pre>
+<pre><code> [1] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944831.CEL&quot;
+ [2] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944832.CEL&quot;
+ [3] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944833.CEL&quot;
+ [4] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944834.CEL&quot;
+ [5] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944835.CEL&quot;
+ [6] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944836.CEL&quot;
+ [7] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944837.CEL&quot;
+ [8] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944838.CEL&quot;
+ [9] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944839.CEL&quot;
+[10] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944840.CEL&quot;
+[11] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944841.CEL&quot;
+[12] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944842.CEL&quot;
+[13] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944843.CEL&quot;
+[14] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944844.CEL&quot;
+[15] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944845.CEL&quot;
+[16] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944846.CEL&quot;
+[17] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944847.CEL&quot;
+[18] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944848.CEL&quot;
+[19] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944849.CEL&quot;
+[20] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944850.CEL&quot;
+[21] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944851.CEL&quot;
+[22] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944852.CEL&quot;
+[23] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944853.CEL&quot;
+[24] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944854.CEL&quot;
+[25] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944855.CEL&quot;
+[26] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944856.CEL&quot;
+[27] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944857.CEL&quot;
+[28] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944858.CEL&quot;
+[29] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944859.CEL&quot;
+[30] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944860.CEL&quot;
+[31] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944861.CEL&quot;
+[32] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944862.CEL&quot;
+[33] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944863.CEL&quot;
+[34] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944864.CEL&quot;
+[35] &quot;E:/GItHub/PEC2_Datos_Omicos/datos/GSM944865.CEL&quot;</code></pre>
 <pre class="r"><code>library(oligo)
 
 CELfiles &lt;- paste0(targetsDF$muestra, &quot;.CEL&quot;)

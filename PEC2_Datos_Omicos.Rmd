@@ -42,6 +42,8 @@ opts_chunk$set(echo=TRUE,
                warning=FALSE)
 opts_knit$set(width=75)
 
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+
 ```
 
 
@@ -226,13 +228,6 @@ rawData <- read.celfiles(file.path(dataDir, CELfiles), phenoData = targets)
 
 
 ```{r}
-rawData
-
-```
-
-
-
-```{r}
 filter_microarray <- function(allTargets, seed = 43141876) {
   # Configurar la semilla aleatoria
   set.seed(seed)
@@ -265,6 +260,7 @@ filter_microarray <- function(allTargets, seed = 43141876) {
 
 ```
 
+
 ```{r}
 allTargets <- data.frame(
   muestra = c("GSM944831", "GSM944838", "GSM944845", "GSM944852", "GSM944859",
@@ -282,8 +278,6 @@ allTargets <- data.frame(
 
 # Aplicar la función (cambiar 123 por vuestro ID de la UOC u otro número que podáis escribir en el documento)
 result <- filter_microarray(allTargets, seed=43141876)
-print(result)
-
 
 ```
 
@@ -293,9 +287,6 @@ cel_files <- list.files(dataDir, pattern = "\\.CEL$", full.names = TRUE)
 # Asegurar que los nombres seleccionados coincidan exactamente con los archivos en cel_files
 selected_samples <- result$muestra
 selected_cel_files <- cel_files[basename(cel_files) %in% paste0(selected_samples, ".CEL")]
-
-# Verificar los archivos seleccionados
-print(selected_cel_files)
 
 
 ```
@@ -412,15 +403,14 @@ if (rerun) {
 
 ![heat map](resultados/hm.png "Heat Map")
 
+![Volcano Vancomizina](resultados/Volcano_Untreated.png "Volcano Sin tratamiento")
 
-![Volcano Vancomizina](resultados/Volcano_Plot_Untreated.png "Volcano Sin tratamiento")
 
+![Volcano Linezolid](resultados/Volcano_Linezolid.png "Volcano Linezolid")
 
-![Volcano Linezolid](resultados/Volcano_Plot_Linezolid.png "Volcano Linezolid")
-
-![Volcano Vancomizina](resultados/Volcano_Plot_Vancomycin.png "Volcano Vancomizina")
+![Volcano Vancomizina](resultados/Volcano_Vancomycin.png "Volcano Vancomizina")
 ![Standard deviation versus rank of the mean](resultados/msd.png "Standard deviation versus rank of the mean")
-
+Para algunos de los gráficos obtenidos con Array Quality Metrix, se observa sobre todo en sin tratamiento que están subexpresadas,además en la parte baja Esto indica que los cambios observados (la subexpresión) no son considerados estadísticamente relevantes según el umbral. asi pues Los puntos en esa región representan características que están subexpresadas, pero no tienen suficiente evidencia estadística para ser consideradas diferencialmente expresadas con confianza. Estas observaciones podrían ser ruido experimental o requerir más muestras para confirmar su significancia.
 
 ## Normalización
 
@@ -504,7 +494,7 @@ ggplot(pca_data, aes(x = PC1, y = PC2, color = tratamiento, shape = hora)) +
        x = paste("PC1 (", round(summary(pca)$importance[2, 1] * 100, 1), "%)", sep = ""),
        y = paste("PC2 (", round(summary(pca)$importance[2, 2] * 100, 1), "%)", sep = ""))
 ```
-
+Las dos primeras componentes explican casi un 60% de la variabilidad en los grupos, pero no se puede afirmar diferencias en los grupos ni por infectado=24h, no infectado=0h, ni por tratamiento.
 
 ## Filtrado
 
