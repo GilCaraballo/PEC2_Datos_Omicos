@@ -402,18 +402,24 @@ plotPCA(exprs(raw_data), labels = labels, colors = colors,
 ```{r}
 library(arrayQualityMetrics)
 
-rerun <- TRUE
+rerun <- FALSE
 if (rerun) {
     arrayQualityMetrics(expressionset = rawData, reporttitle = resultsDir, force = TRUE)
 }
 
 ```
 
-![Texto alternativo](ruta/de/la/imagen "Título opcional")
 
-![Texto alternativo](ruta/de/la/imagen "Título opcional")
+![heat map](resultados/hm.png "Heat Map")
 
-![Texto alternativo](ruta/de/la/imagen "Título opcional")
+
+![Volcano Vancomizina](resultados/Volcano_Plot_Untreated.png "Volcano Sin tratamiento")
+
+
+![Volcano Linezolid](resultados/Volcano_Plot_Linezolid.png "Volcano Linezolid")
+
+![Volcano Vancomizina](resultados/Volcano_Plot_Vancomycin.png "Volcano Vancomizina")
+![Standard deviation versus rank of the mean](resultados/msd.png "Standard deviation versus rank of the mean")
 
 
 ## Normalización
